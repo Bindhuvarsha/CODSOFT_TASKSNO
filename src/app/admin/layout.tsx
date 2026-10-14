@@ -9,7 +9,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
   const { isOpen, close } = useMobileNav();
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-200">
       <QuickRoleSwitcher currentRole="ADMIN" />
       <div className="flex-1 flex">
         <Sidebar

@@ -185,7 +185,7 @@ export default function AttendanceAdminPage() {
     setAttendanceRecords((prev) => prev.map((r) => ({ ...r, status })));
   };
 
-  // Mock weekly and monthly trend data for visualization
+  // Weekly and monthly trend data for visualization
   const weeklyDays = [
     { day: 'Mon', rate: 96, present: 10, absent: 0, date: 'Oct 09' },
     { day: 'Tue', rate: 94, present: 9, absent: 1, date: 'Oct 10' },
@@ -228,7 +228,7 @@ export default function AttendanceAdminPage() {
             )}
             <Link
               href="/admin/reports"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-lg text-xs font-semibold shadow-xs transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-semibold shadow-xs transition-colors"
             >
               <span>Export Report</span>
             </Link>
@@ -238,14 +238,14 @@ export default function AttendanceAdminPage() {
 
       <div className="p-4 sm:p-6 space-y-6">
         {/* Navigation Tabs: Analytics vs Daily Register */}
-        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveTab('analytics')}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === 'analytics'
                   ? 'bg-indigo-600 text-white shadow-xs shadow-indigo-600/20'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
               }`}
             >
               <BarChart3 className="w-4 h-4" />
@@ -256,7 +256,7 @@ export default function AttendanceAdminPage() {
               className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 activeTab === 'register'
                   ? 'bg-indigo-600 text-white shadow-xs shadow-indigo-600/20'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
               }`}
             >
               <CalendarCheck className="w-4 h-4" />
@@ -264,7 +264,7 @@ export default function AttendanceAdminPage() {
             </button>
           </div>
 
-          <span className="hidden sm:inline-flex text-[11px] font-semibold text-slate-500 items-center gap-1.5">
+          <span className="hidden sm:inline-flex text-[11px] font-semibold text-slate-500 dark:text-slate-400 items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             Academic Year 2026-2027 • Term 1
           </span>
@@ -272,74 +272,74 @@ export default function AttendanceAdminPage() {
 
         {/* 4 Clear Visual Indicators for Key Metrics */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-xs relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Overall Attendance
               </span>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-50"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-50 dark:ring-emerald-950"></span>
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <p className="text-3xl font-black text-slate-900">{stats?.rate || 94}%</p>
-              <span className="text-[11px] font-bold text-emerald-600">+2.4% vs last term</span>
+              <p className="text-3xl font-black text-slate-900 dark:text-white">{stats?.rate || 94}%</p>
+              <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">+2.4% vs last term</span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">Exceeds 85% requirement</p>
-            <div className="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+            <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">Exceeds 85% requirement</p>
+            <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mt-3 overflow-hidden">
               <div className="h-1.5 rounded-full bg-emerald-500" style={{ width: `${stats?.rate || 94}%` }}></div>
             </div>
           </div>
 
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-xs relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Present Sessions
               </span>
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <p className="text-3xl font-black text-emerald-600">{stats?.present || 14}</p>
-              <span className="text-[11px] font-bold text-slate-500">Total present</span>
+              <p className="text-3xl font-black text-emerald-600 dark:text-emerald-400">{stats?.present || 14}</p>
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400">Total present</span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">88.5% on-time arrival rate</p>
-            <div className="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+            <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">88.5% on-time arrival rate</p>
+            <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mt-3 overflow-hidden">
               <div className="h-1.5 rounded-full bg-emerald-600" style={{ width: '88.5%' }}></div>
             </div>
           </div>
 
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-xs relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Late Arrivals
               </span>
               <Clock className="w-4 h-4 text-amber-500" />
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <p className="text-3xl font-black text-amber-600">{stats?.late || 1}</p>
-              <span className="text-[11px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.2 rounded">
+              <p className="text-3xl font-black text-amber-600 dark:text-amber-400">{stats?.late || 1}</p>
+              <span className="text-[11px] font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/60 px-1.5 py-0.2 rounded">
                 5.5% Tardy
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">With valid transit notes</p>
-            <div className="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+            <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">With valid transit notes</p>
+            <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mt-3 overflow-hidden">
               <div className="h-1.5 rounded-full bg-amber-500" style={{ width: '5.5%' }}></div>
             </div>
           </div>
 
-          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs relative overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-xs relative overflow-hidden">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Unexcused Absence
               </span>
               <AlertCircle className="w-4 h-4 text-rose-500" />
             </div>
             <div className="mt-2 flex items-baseline gap-2">
-              <p className="text-3xl font-black text-rose-600">{stats?.absent || 0}</p>
-              <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.2 rounded">
+              <p className="text-3xl font-black text-rose-600 dark:text-rose-400">{stats?.absent || 0}</p>
+              <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-1.5 py-0.2 rounded">
                 Controlled
               </span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">0 students below 75% cutoff</p>
-            <div className="w-full bg-slate-100 rounded-full h-1.5 mt-3 overflow-hidden">
+            <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">0 students below 75% cutoff</p>
+            <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mt-3 overflow-hidden">
               <div className="h-1.5 rounded-full bg-rose-500" style={{ width: '2.0%' }}></div>
             </div>
           </div>
@@ -351,21 +351,21 @@ export default function AttendanceAdminPage() {
             {/* Row 1: Attendance Charts + Weekly/Monthly Summary Toggle */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Attendance Trend Chart */}
-              <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+              <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800 mb-5">
                     <div>
-                      <h3 className="text-sm font-bold text-slate-900">Attendance & Performance Trends</h3>
-                      <p className="text-xs text-slate-500">Day-by-day cohort attendance and punctuality index</p>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">Attendance & Performance Trends</h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">Day-by-day cohort attendance and punctuality index</p>
                     </div>
 
-                    <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+                    <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
                       <button
                         onClick={() => setSummaryView('weekly')}
                         className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${
                           summaryView === 'weekly'
-                            ? 'bg-white text-indigo-600 shadow-xs'
-                            : 'text-slate-600 hover:text-slate-900'
+                            ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-white shadow-xs'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                         }`}
                       >
                         Weekly View
@@ -374,8 +374,8 @@ export default function AttendanceAdminPage() {
                         onClick={() => setSummaryView('monthly')}
                         className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${
                           summaryView === 'monthly'
-                            ? 'bg-white text-indigo-600 shadow-xs'
-                            : 'text-slate-600 hover:text-slate-900'
+                            ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-white shadow-xs'
+                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                         }`}
                       >
                         Monthly Summary
@@ -390,46 +390,46 @@ export default function AttendanceAdminPage() {
                           const heightPercent = Math.max(d.rate, 30);
                           return (
                             <div key={d.day} className="flex flex-col items-center gap-2 h-full justify-end group">
-                              <span className="text-[10px] font-bold font-mono text-indigo-600 group-hover:scale-110 transition-transform">
+                              <span className="text-[10px] font-bold font-mono text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
                                 {d.rate}%
                               </span>
-                              <div className="w-full max-w-[42px] bg-indigo-50 group-hover:bg-indigo-100 rounded-xl flex items-end justify-center p-1 h-32 transition-colors">
+                              <div className="w-full max-w-[42px] bg-indigo-50 dark:bg-slate-800 group-hover:bg-indigo-100 dark:group-hover:bg-slate-700 rounded-xl flex items-end justify-center p-1 h-32 transition-colors">
                                 <div
-                                  className="w-full bg-linear-to-t from-indigo-600 to-indigo-500 rounded-lg transition-all duration-700 shadow-xs"
+                                  className="w-full bg-gradient-to-t from-indigo-600 to-indigo-500 rounded-lg transition-all duration-700 shadow-xs"
                                   style={{ height: `${heightPercent}%` }}
                                 ></div>
                               </div>
                               <div className="text-center">
-                                <span className="text-xs font-bold text-slate-800 block">{d.day}</span>
-                                <span className="text-[10px] text-slate-400">{d.date}</span>
+                                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block">{d.day}</span>
+                                <span className="text-[10px] text-slate-400 dark:text-slate-500">{d.date}</span>
                               </div>
                             </div>
                           );
                         })}
                       </div>
 
-                      <div className="mt-6 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2">
+                      <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-2">
                         <span className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full bg-indigo-600"></span>
-                          Peak Attendance: <strong className="text-slate-800">Wednesday (98%)</strong>
+                          Peak Attendance: <strong className="text-slate-800 dark:text-slate-200">Wednesday (98%)</strong>
                         </span>
-                        <span>Weekly Average: <strong className="text-indigo-600">94.0%</strong></span>
+                        <span>Weekly Average: <strong className="text-indigo-600 dark:text-indigo-400">94.0%</strong></span>
                       </div>
                     </div>
                   ) : (
                     <div className="space-y-4 pt-2">
                       {monthlyBreakdown.map((m) => (
-                        <div key={m.month} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+                        <div key={m.month} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 space-y-2">
                           <div className="flex items-center justify-between text-xs font-bold">
-                            <span className="text-slate-900">{m.month}</span>
-                            <span className="text-indigo-600 font-mono text-sm">{m.rate}%</span>
+                            <span className="text-slate-900 dark:text-white">{m.month}</span>
+                            <span className="text-indigo-600 dark:text-indigo-400 font-mono text-sm">{m.rate}%</span>
                           </div>
-                          <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                          <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
                             <div className={`h-2 rounded-full ${m.color}`} style={{ width: `${m.rate}%` }}></div>
                           </div>
-                          <div className="flex justify-between text-[11px] text-slate-500">
+                          <div className="flex justify-between text-[11px] text-slate-500 dark:text-slate-400">
                             <span>{m.sessions} Academic Sessions Conducted</span>
-                            <span className="text-emerald-700 font-semibold">{m.status}</span>
+                            <span className="text-emerald-700 dark:text-emerald-400 font-semibold">{m.status}</span>
                           </div>
                         </div>
                       ))}
@@ -437,11 +437,11 @@ export default function AttendanceAdminPage() {
                   )}
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
-                  <span className="text-slate-500">Calculated across 10 enrolled active students</span>
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 mt-4 flex items-center justify-between text-xs">
+                  <span className="text-slate-500 dark:text-slate-400">Calculated across 10 enrolled active students</span>
                   <button
                     onClick={() => setActiveTab('register')}
-                    className="font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+                    className="font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1"
                   >
                     <span>Launch Register</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
@@ -450,50 +450,50 @@ export default function AttendanceAdminPage() {
               </div>
 
               {/* Performance vs Attendance Correlation Card */}
-              <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+              <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+                  <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
                     <div className="flex items-center gap-2">
-                      <Award className="w-4 h-4 text-purple-600" />
-                      <h3 className="text-sm font-bold text-slate-900">Academic Correlation</h3>
+                      <Award className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">Academic Correlation</h3>
                     </div>
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
                       R² = 0.88
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-500 mb-4">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
                     Students maintaining attendance above 90% demonstrate a 24% higher GPA across midterm examinations.
                   </p>
 
                   <div className="space-y-3 text-xs">
-                    <div className="p-3 rounded-xl bg-purple-50/60 border border-purple-100">
-                      <div className="flex justify-between font-bold text-slate-800">
+                    <div className="p-3 rounded-xl bg-purple-50/60 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/40">
+                      <div className="flex justify-between font-bold text-slate-800 dark:text-slate-200">
                         <span>Attendance &gt; 90%</span>
-                        <span className="text-purple-700">Avg Grade A (89%)</span>
+                        <span className="text-purple-700 dark:text-purple-300">Avg Grade A (89%)</span>
                       </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">8 Students in high achievement bracket</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">8 Students in high achievement bracket</p>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-blue-50/60 border border-blue-100">
-                      <div className="flex justify-between font-bold text-slate-800">
+                    <div className="p-3 rounded-xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/40">
+                      <div className="flex justify-between font-bold text-slate-800 dark:text-slate-200">
                         <span>Attendance 80% - 90%</span>
-                        <span className="text-blue-700">Avg Grade B+ (78%)</span>
+                        <span className="text-blue-700 dark:text-blue-300">Avg Grade B+ (78%)</span>
                       </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">2 Students in standard achievement bracket</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">2 Students in standard achievement bracket</p>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                      <div className="flex justify-between font-bold text-slate-800">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
+                      <div className="flex justify-between font-bold text-slate-800 dark:text-slate-200">
                         <span>Attendance &lt; 80%</span>
-                        <span className="text-rose-600">Avg Grade C (62%)</span>
+                        <span className="text-rose-600 dark:text-rose-400">Avg Grade C (62%)</span>
                       </div>
-                      <p className="text-[11px] text-slate-500 mt-0.5">0 Students currently at academic risk</p>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">0 Students currently at academic risk</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 mt-4 text-[11px] text-slate-500 flex items-center gap-1.5">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 mt-4 text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>All cohorts meet board eligibility requirements</span>
                 </div>
@@ -503,16 +503,16 @@ export default function AttendanceAdminPage() {
             {/* Row 2: Upcoming Examination Calendar & Class Breakdown */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Upcoming Examination Calendar */}
-              <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+              <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+                  <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-indigo-600" />
-                      <h3 className="text-sm font-bold text-slate-900">Upcoming Examination Calendar</h3>
+                      <Calendar className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">Upcoming Examination Calendar</h3>
                     </div>
                     <Link
                       href="/admin/exams"
-                      className="text-xs text-indigo-600 hover:text-indigo-700 font-semibold flex items-center gap-1"
+                      className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline font-semibold flex items-center gap-1"
                     >
                       <span>All Exams</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -531,33 +531,33 @@ export default function AttendanceAdminPage() {
                         return (
                           <div
                             key={ex.id}
-                            className="p-3.5 rounded-xl bg-slate-50/70 hover:bg-indigo-50/30 border border-slate-200/70 hover:border-indigo-200 transition-all flex items-center justify-between gap-3 group"
+                            className="p-3.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 hover:bg-indigo-50/30 dark:hover:bg-slate-800 border border-slate-200/70 dark:border-slate-700/60 transition-all flex items-center justify-between gap-3 group"
                           >
                             <div className="flex items-center gap-3 min-w-0">
-                              <div className="w-10 h-11 rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center shadow-xs shrink-0 text-center">
-                                <span className="text-[9px] font-black uppercase text-indigo-600 leading-none">
+                              <div className="w-10 h-11 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex flex-col items-center justify-center shadow-xs shrink-0 text-center">
+                                <span className="text-[9px] font-black uppercase text-indigo-600 dark:text-indigo-400 leading-none">
                                   {month}
                                 </span>
-                                <span className="text-xs font-black text-slate-900 leading-tight mt-0.5">
+                                <span className="text-xs font-black text-slate-900 dark:text-white leading-tight mt-0.5">
                                   {day}
                                 </span>
                               </div>
 
                               <div className="min-w-0">
-                                <h4 className="text-xs font-bold text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
+                                <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                   {ex.title}
                                 </h4>
-                                <p className="text-[11px] text-slate-500 truncate mt-0.5">
+                                <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
                                   {ex.class?.name} ({ex.class?.section}) • {ex.academicYear}
                                 </p>
                               </div>
                             </div>
 
                             <div className="text-right shrink-0">
-                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 border border-purple-200 uppercase">
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 uppercase">
                                 {ex.examType}
                               </span>
-                              <p className="text-[9px] text-slate-400 mt-1">Min 80% Att Req</p>
+                              <p className="text-[9px] text-slate-400 dark:text-slate-500 mt-1">Min 80% Att Req</p>
                             </div>
                           </div>
                         );
@@ -566,52 +566,52 @@ export default function AttendanceAdminPage() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs text-slate-500">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                   <span className="flex items-center gap-1.5">
                     <Info className="w-3.5 h-3.5 text-slate-400" />
                     Admit cards issued only to qualified attendance tiers
                   </span>
-                  <Link href="/admin/exams" className="text-xs font-bold text-indigo-600">
+                  <Link href="/admin/exams" className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
                     Schedule →
                   </Link>
                 </div>
               </div>
 
               {/* Class Cohorts Breakdown */}
-              <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
+              <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 shadow-xs flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+                  <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800 mb-4">
                     <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-emerald-600" />
-                      <h3 className="text-sm font-bold text-slate-900">Class Cohort Attendance Index</h3>
+                      <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white">Class Cohort Attendance Index</h3>
                     </div>
                     <span className="text-[10px] font-semibold text-slate-400">4 Cohorts</span>
                   </div>
 
                   <div className="space-y-3.5">
                     {classAttendanceBreakdown.map((c) => (
-                      <div key={c.name} className="p-3 rounded-xl bg-slate-50/70 border border-slate-200/70 space-y-2">
+                      <div key={c.name} className="p-3 rounded-xl bg-slate-50/70 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60 space-y-2">
                         <div className="flex items-center justify-between text-xs font-semibold">
-                          <span className="text-slate-800">{c.name}</span>
-                          <span className="text-emerald-700 font-mono font-bold">{c.rate}%</span>
+                          <span className="text-slate-800 dark:text-slate-200">{c.name}</span>
+                          <span className="text-emerald-700 dark:text-emerald-400 font-mono font-bold">{c.rate}%</span>
                         </div>
-                        <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                        <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
                           <div className="h-2 rounded-full bg-emerald-500" style={{ width: `${c.rate}%` }}></div>
                         </div>
-                        <div className="flex justify-between text-[11px] text-slate-500">
+                        <div className="flex justify-between text-[11px] text-slate-500 dark:text-slate-400">
                           <span>In-charge: {c.teacher}</span>
-                          <span className="font-semibold text-slate-700">{c.students} Students</span>
+                          <span className="font-semibold text-slate-700 dark:text-slate-300">{c.students} Students</span>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs text-slate-500">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 mt-4 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                   <span>Automatic parent alerts triggered on unexcused marks</span>
                   <button
                     onClick={() => setActiveTab('register')}
-                    className="text-xs font-bold text-emerald-600 hover:text-emerald-700"
+                    className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline"
                   >
                     Mark Today's Register →
                   </button>
@@ -625,14 +625,14 @@ export default function AttendanceAdminPage() {
         {activeTab === 'register' && (
           <div className="space-y-6">
             {/* Filter Bar */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs flex flex-wrap items-center justify-between gap-4">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-4 shadow-xs flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-3">
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">Select Cohort</label>
+                  <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">Select Cohort</label>
                   <select
                     value={selectedClass}
                     onChange={(e) => setSelectedClass(e.target.value)}
-                    className="px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 font-semibold"
+                    className="px-3 py-1.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 font-semibold"
                   >
                     {classes.map((c) => (
                       <option key={c.id} value={c.id}>
@@ -643,30 +643,30 @@ export default function AttendanceAdminPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-700 uppercase mb-1">Session Date</label>
+                  <label className="block text-[11px] font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">Session Date</label>
                   <input
                     type="date"
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
-                    className="px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="px-3 py-1.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
               </div>
 
               {/* Quick Mark All Buttons */}
               <div className="flex items-center gap-2">
-                <span className="text-xs text-slate-500 font-medium">Quick Mark:</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Quick Mark:</span>
                 <button
                   type="button"
                   onClick={() => markAll('PRESENT')}
-                  className="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 transition-colors"
+                  className="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900 border border-emerald-200 dark:border-emerald-800 transition-colors"
                 >
                   All Present
                 </button>
                 <button
                   type="button"
                   onClick={() => markAll('ABSENT')}
-                  className="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 transition-colors"
+                  className="px-2.5 py-1 text-xs font-semibold rounded-md bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900 border border-rose-200 dark:border-rose-800 transition-colors"
                 >
                   All Absent
                 </button>
@@ -674,10 +674,10 @@ export default function AttendanceAdminPage() {
             </div>
 
             {/* Attendance Register Table */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-xs overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50/80 text-slate-600 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200">
+                  <thead className="bg-slate-50/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
                     <tr>
                       <th className="py-3 px-4">Roll</th>
                       <th className="py-3 px-4">Student Name</th>
@@ -686,7 +686,7 @@ export default function AttendanceAdminPage() {
                       <th className="py-3 px-4">Remarks / Exception Notes</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                     {loading ? (
                       <tr>
                         <td colSpan={5} className="py-8 text-center text-slate-400">
@@ -704,17 +704,17 @@ export default function AttendanceAdminPage() {
                       </tr>
                     ) : (
                       attendanceRecords.map((r) => (
-                        <tr key={r.studentId} className="hover:bg-slate-50/50 transition-colors">
-                          <td className="py-3 px-4 font-bold text-slate-900 font-mono">#{r.rollNo}</td>
+                        <tr key={r.studentId} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                          <td className="py-3 px-4 font-bold text-slate-900 dark:text-white font-mono">#{r.rollNo}</td>
                           <td className="py-3 px-4">
                             <div className="flex items-center gap-2.5">
-                              <div className="w-7 h-7 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-xs overflow-hidden border">
+                              <div className="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center font-bold text-xs overflow-hidden border dark:border-slate-700">
                                 {r.avatar ? <img src={r.avatar} alt={r.studentName} /> : r.studentName[0]}
                               </div>
-                              <span className="font-semibold text-slate-900">{r.studentName}</span>
+                              <span className="font-semibold text-slate-900 dark:text-white">{r.studentName}</span>
                             </div>
                           </td>
-                          <td className="py-3 px-3 font-mono text-slate-500">{r.admissionNo}</td>
+                          <td className="py-3 px-3 font-mono text-slate-500 dark:text-slate-400">{r.admissionNo}</td>
 
                           {/* Interactive Status Pills */}
                           <td className="py-3 px-4">
@@ -724,16 +724,16 @@ export default function AttendanceAdminPage() {
                                 const colors = {
                                   PRESENT: isSelected
                                     ? 'bg-emerald-600 text-white font-bold shadow-xs'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-emerald-50 hover:text-emerald-700',
+                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-emerald-50 hover:text-emerald-700',
                                   LATE: isSelected
                                     ? 'bg-amber-600 text-white font-bold shadow-xs'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-amber-50 hover:text-amber-700',
+                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-amber-50 hover:text-amber-700',
                                   ABSENT: isSelected
                                     ? 'bg-rose-600 text-white font-bold shadow-xs'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-rose-50 hover:text-rose-700',
+                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-rose-50 hover:text-rose-700',
                                   EXCUSED: isSelected
                                     ? 'bg-blue-600 text-white font-bold shadow-xs'
-                                    : 'bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700',
+                                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-blue-50 hover:text-blue-700',
                                 }[st];
 
                                 return (
@@ -756,7 +756,7 @@ export default function AttendanceAdminPage() {
                               value={r.remarks}
                               onChange={(e) => handleRemarksChange(r.studentId, e.target.value)}
                               placeholder="Add note (e.g. sick leave, bus delay)..."
-                              className="w-full px-2.5 py-1 text-xs border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 bg-slate-50/50 focus:bg-white"
+                              className="w-full px-2.5 py-1 text-xs border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-indigo-500 bg-slate-50/50 dark:bg-slate-800 text-slate-900 dark:text-white"
                             />
                           </td>
                         </tr>
@@ -766,8 +766,8 @@ export default function AttendanceAdminPage() {
                 </table>
               </div>
 
-              <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs text-slate-500">
+              <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-850 flex flex-wrap items-center justify-between gap-3">
+                <span className="text-xs text-slate-500 dark:text-slate-400">
                   {attendanceRecords.filter((r) => r.status === 'PRESENT').length} of{' '}
                   {attendanceRecords.length} Students Present on {formatDate(selectedDate)}
                 </span>

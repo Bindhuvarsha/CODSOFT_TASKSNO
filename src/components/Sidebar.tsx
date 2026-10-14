@@ -81,9 +81,9 @@ export default function Sidebar({
   const links = role === 'ADMIN' ? adminLinks : role === 'TEACHER' ? teacherLinks : studentLinks;
 
   const roleBadgeColor = {
-    ADMIN: 'bg-indigo-100 text-indigo-700 border-indigo-200',
-    TEACHER: 'bg-blue-100 text-blue-700 border-blue-200',
-    STUDENT: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    ADMIN: 'bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800',
+    TEACHER: 'bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800',
+    STUDENT: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800',
   }[role];
 
   return (
@@ -92,31 +92,31 @@ export default function Sidebar({
       {isMobileOpen && (
         <div
           onClick={onMobileClose}
-          className="fixed inset-0 bg-slate-900/60 z-40 lg:hidden backdrop-blur-xs animate-in fade-in"
+          className="fixed inset-0 bg-slate-900/70 z-40 lg:hidden backdrop-blur-xs animate-in fade-in"
         />
       )}
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 z-50 lg:z-10 bg-white border-r border-slate-200 flex flex-col h-screen transition-all duration-300 ease-in-out shrink-0 ${
+        className={`fixed lg:sticky top-0 left-0 z-50 lg:z-10 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col h-screen transition-all duration-300 ease-in-out shrink-0 ${
           isCollapsed ? 'w-20' : 'w-64'
         } ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
       >
         {/* Brand Header */}
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between">
+        <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 group overflow-hidden">
             <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/25 group-hover:scale-105 transition-transform shrink-0">
               <BookOpen className="w-5 h-5" />
             </div>
             {!isCollapsed && (
               <div className="animate-in fade-in duration-200">
-                <h1 className="font-bold text-slate-900 text-base leading-tight flex items-center gap-1.5">
+                <h1 className="font-bold text-slate-900 dark:text-white text-base leading-tight flex items-center gap-1.5">
                   EduManage
-                  <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800">
                     PRO
                   </span>
                 </h1>
-                <p className="text-[11px] text-slate-400">Institutional OS</p>
+                <p className="text-[11px] text-slate-400 dark:text-slate-500">Institutional OS</p>
               </div>
             )}
           </Link>
@@ -125,7 +125,7 @@ export default function Sidebar({
           {onMobileClose && (
             <button
               onClick={onMobileClose}
-              className="lg:hidden p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100"
+              className="lg:hidden p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               <X className="w-5 h-5" />
             </button>
@@ -134,14 +134,14 @@ export default function Sidebar({
 
         {/* Role Pill */}
         {!isCollapsed ? (
-          <div className="px-4 py-2.5 border-b border-slate-100 bg-slate-50/70 flex items-center justify-between animate-in fade-in">
-            <span className="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Active Role</span>
+          <div className="px-4 py-2.5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/50 flex items-center justify-between animate-in fade-in">
+            <span className="text-[11px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">Active Role</span>
             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${roleBadgeColor}`}>
               {role}
             </span>
           </div>
         ) : (
-          <div className="py-2 border-b border-slate-100 bg-slate-50/70 flex justify-center">
+          <div className="py-2 border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/50 flex justify-center">
             <span className={`w-2.5 h-2.5 rounded-full ${role === 'ADMIN' ? 'bg-indigo-600' : role === 'TEACHER' ? 'bg-blue-600' : 'bg-emerald-600'}`} title={`Role: ${role}`}></span>
           </div>
         )}
@@ -162,13 +162,13 @@ export default function Sidebar({
                   isCollapsed ? 'justify-center' : ''
                 } ${
                   isActive
-                    ? 'bg-indigo-50 text-indigo-700 font-bold shadow-xs border border-indigo-100'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                    ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 font-bold shadow-xs border border-indigo-100 dark:border-indigo-900/60'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60'
                 }`}
               >
                 <Icon
                   className={`w-4 h-4 shrink-0 transition-colors ${
-                    isActive ? 'text-indigo-600' : 'text-slate-400 group-hover:text-slate-600'
+                    isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'
                   }`}
                 />
                 {!isCollapsed && <span className="truncate">{link.label}</span>}
@@ -178,33 +178,33 @@ export default function Sidebar({
         </nav>
 
         {/* Collapse / Expand Toggle Button (Desktop) */}
-        <div className="hidden lg:flex px-3 py-2 border-t border-slate-100 justify-end">
+        <div className="hidden lg:flex px-3 py-2 border-t border-slate-100 dark:border-slate-800 justify-end">
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="w-full flex items-center justify-center gap-2 p-1.5 text-xs font-semibold text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+            className="w-full flex items-center justify-center gap-2 p-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
             title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
           >
             {isCollapsed ? (
-              <ChevronRight className="w-4 h-4 text-slate-600" />
+              <ChevronRight className="w-4 h-4 text-slate-400 dark:text-slate-300" />
             ) : (
               <>
-                <ChevronLeft className="w-4 h-4 text-slate-400" />
-                <span className="text-[11px] text-slate-500">Collapse Menu</span>
+                <ChevronLeft className="w-4 h-4 text-slate-400 dark:text-slate-500" />
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">Collapse Menu</span>
               </>
             )}
           </button>
         </div>
 
         {/* User info & Logout Footer */}
-        <div className="p-3 border-t border-slate-200 bg-slate-50/50 space-y-2">
+        <div className="p-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-850 space-y-2">
           {!isCollapsed ? (
-            <div className="px-3 py-2 rounded-lg bg-white border border-slate-200/80 shadow-xs animate-in fade-in">
-              <p className="text-xs font-bold text-slate-800 truncate">{userName || 'Active User'}</p>
-              <p className="text-[11px] text-slate-400 truncate">{userEmail || `${role.toLowerCase()}@edumanage.com`}</p>
+            <div className="px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-xs animate-in fade-in">
+              <p className="text-xs font-bold text-slate-800 dark:text-white truncate">{userName || 'Active User'}</p>
+              <p className="text-[11px] text-slate-400 dark:text-slate-400 truncate">{userEmail || `${role.toLowerCase()}@edumanage.com`}</p>
             </div>
           ) : (
             <div className="flex justify-center" title={`${userName} (${userEmail})`}>
-              <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold text-xs flex items-center justify-center border border-indigo-200">
+              <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center justify-center border border-indigo-200 dark:border-indigo-800">
                 {(userName || 'U')[0]}
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function Sidebar({
           <button
             onClick={handleLogout}
             title="Sign Out"
-            className={`w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 rounded-lg border border-transparent hover:border-rose-200 transition-colors ${
+            className={`w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-lg border border-transparent hover:border-rose-200 dark:hover:border-rose-900/50 transition-colors ${
               isCollapsed ? 'p-2' : ''
             }`}
           >

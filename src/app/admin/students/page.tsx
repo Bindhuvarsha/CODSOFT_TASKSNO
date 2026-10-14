@@ -205,7 +205,7 @@ export default function StudentsAdminPage() {
           <div className="flex items-center gap-2">
             <button
               onClick={handleExportCSV}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 rounded-lg text-xs font-semibold shadow-xs transition-colors"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-semibold shadow-xs transition-colors"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Export CSV</span>
@@ -226,7 +226,7 @@ export default function StudentsAdminPage() {
 
       <div className="p-4 sm:p-6 space-y-4">
         {/* Search, Filter & Sort Toolbar */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 p-4 shadow-xs flex flex-col lg:flex-row items-center justify-between gap-3">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-4 shadow-xs flex flex-col lg:flex-row items-center justify-between gap-3">
           <div className="relative w-full lg:w-80">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -237,7 +237,7 @@ export default function StudentsAdminPage() {
                 setCurrentPage(1);
               }}
               placeholder="Search by student name, ID, roll..."
-              className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-slate-800"
             />
           </div>
 
@@ -249,7 +249,7 @@ export default function StudentsAdminPage() {
                 setSelectedClass(e.target.value);
                 setCurrentPage(1);
               }}
-              className="px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
+              className="px-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
             >
               <option value="">All Cohorts / Classes</option>
               {classes.map((c) => (
@@ -266,7 +266,7 @@ export default function StudentsAdminPage() {
                 setSelectedStatus(e.target.value);
                 setCurrentPage(1);
               }}
-              className="px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
+              className="px-3 py-2 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium"
             >
               <option value="">All Statuses</option>
               <option value="ACTIVE">Active</option>
@@ -280,8 +280,8 @@ export default function StudentsAdminPage() {
               onClick={() => toggleSort('name')}
               className={`flex items-center gap-1.5 px-3 py-2 text-xs rounded-xl border transition-all ${
                 sortBy === 'name'
-                  ? 'bg-indigo-50 border-indigo-200 text-indigo-700 font-semibold'
-                  : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                  ? 'bg-indigo-50 dark:bg-indigo-950/60 border-indigo-200 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 font-semibold'
+                  : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
               }`}
             >
               <ArrowUpDown className="w-3.5 h-3.5" />
@@ -291,10 +291,10 @@ export default function StudentsAdminPage() {
         </div>
 
         {/* Data Table with Loading Skeletons & Horizontal Scroll */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-xs overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs min-w-[700px]">
-              <thead className="bg-slate-50/80 text-slate-600 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200">
+              <thead className="bg-slate-50/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="py-3.5 px-4">Student Profile</th>
                   <th className="py-3.5 px-3">Student ID</th>
@@ -305,7 +305,7 @@ export default function StudentsAdminPage() {
                   <th className="py-3.5 px-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {loading ? (
                   // Loading Skeletons
                   Array.from({ length: 5 }).map((_, idx) => (
@@ -350,11 +350,11 @@ export default function StudentsAdminPage() {
                       .toUpperCase();
 
                     return (
-                      <tr key={s.id} className="hover:bg-slate-50/70 transition-colors">
+                      <tr key={s.id} className="hover:bg-slate-50/70 dark:hover:bg-slate-800/50 transition-colors">
                         {/* Avatar & Name */}
                         <td className="py-3.5 px-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0 overflow-hidden border border-indigo-200">
+                            <div className="w-9 h-9 rounded-full bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-xs shrink-0 overflow-hidden border border-indigo-200 dark:border-indigo-800">
                               {s.avatar ? (
                                 <img src={s.avatar} alt={s.name} className="w-full h-full object-cover" />
                               ) : (
@@ -362,26 +362,26 @@ export default function StudentsAdminPage() {
                               )}
                             </div>
                             <div>
-                              <p className="font-bold text-slate-900 leading-tight">{s.name}</p>
-                              <p className="text-[11px] text-slate-500 font-mono">Roll #{s.rollNo}</p>
+                              <p className="font-bold text-slate-900 dark:text-white leading-tight">{s.name}</p>
+                              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Roll #{s.rollNo}</p>
                             </div>
                           </div>
                         </td>
 
                         {/* Student ID */}
                         <td className="py-3.5 px-3">
-                          <span className="font-mono font-semibold text-slate-800 bg-slate-100 px-2 py-0.5 rounded text-[11px]">
+                          <span className="font-mono font-semibold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-700 px-2 py-0.5 rounded text-[11px]">
                             {s.admissionNo}
                           </span>
                         </td>
 
                         {/* Class */}
-                        <td className="py-3.5 px-3 font-semibold text-slate-800">
+                        <td className="py-3.5 px-3 font-semibold text-slate-800 dark:text-slate-200">
                           {s.className}
                         </td>
 
                         {/* Email */}
-                        <td className="py-3.5 px-3 text-slate-600">
+                        <td className="py-3.5 px-3 text-slate-600 dark:text-slate-400">
                           {s.email}
                         </td>
 
@@ -390,10 +390,10 @@ export default function StudentsAdminPage() {
                           <span
                             className={`inline-block px-2.5 py-0.5 rounded-full font-bold text-[10px] border ${
                               s.attendanceRate >= 90
-                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800'
                                 : s.attendanceRate >= 75
-                                ? 'bg-blue-50 text-blue-700 border-blue-200'
-                                : 'bg-rose-50 text-rose-700 border-rose-200'
+                                ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-800'
+                                : 'bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400 border-rose-200 dark:border-rose-800'
                             }`}
                           >
                             {s.attendanceRate}%
@@ -405,10 +405,10 @@ export default function StudentsAdminPage() {
                           <span
                             className={`inline-block px-2.5 py-0.5 rounded-full font-bold text-[10px] ${
                               s.status === 'ACTIVE'
-                                ? 'bg-emerald-100 text-emerald-800'
+                                ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
                                 : s.status === 'GRADUATED'
-                                ? 'bg-indigo-100 text-indigo-800'
-                                : 'bg-slate-100 text-slate-700'
+                                ? 'bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300'
+                                : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
                             }`}
                           >
                             {s.status}
@@ -420,7 +420,7 @@ export default function StudentsAdminPage() {
                           <div className="flex items-center justify-end gap-1">
                             <button
                               onClick={() => setViewingStudent(s)}
-                              className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                              className="p-1.5 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
                               title="View Profile"
                             >
                               <Eye className="w-3.5 h-3.5" />
@@ -541,11 +541,11 @@ export default function StudentsAdminPage() {
 
       {/* Student Profile Quick Drawer */}
       {viewingStudent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden animate-in zoom-in-95 p-6">
-            <div className="flex items-start justify-between pb-4 border-b border-slate-100">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-in fade-in">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-lg overflow-hidden animate-in zoom-in-95 p-6">
+            <div className="flex items-start justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm overflow-hidden border border-indigo-200">
+                <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-sm overflow-hidden border border-indigo-200 dark:border-indigo-800">
                   {viewingStudent.avatar ? (
                     <img src={viewingStudent.avatar} alt={viewingStudent.name} />
                   ) : (
@@ -553,15 +553,15 @@ export default function StudentsAdminPage() {
                   )}
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">{viewingStudent.name}</h3>
-                  <p className="text-xs text-slate-500 font-mono">
+                  <h3 className="font-bold text-slate-900 dark:text-white text-base">{viewingStudent.name}</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                     ID: {viewingStudent.admissionNo} • Roll #{viewingStudent.rollNo}
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setViewingStudent(null)}
-                className="text-slate-400 hover:text-slate-600 font-bold"
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-white font-bold"
               >
                 ✕
               </button>
@@ -571,43 +571,43 @@ export default function StudentsAdminPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <span className="text-slate-400 font-semibold uppercase text-[10px] block">Class Cohort</span>
-                  <span className="font-bold text-slate-800">{viewingStudent.className}</span>
+                  <span className="font-bold text-slate-800 dark:text-slate-200">{viewingStudent.className}</span>
                 </div>
                 <div>
                   <span className="text-slate-400 font-semibold uppercase text-[10px] block">Attendance Standing</span>
-                  <span className="font-bold text-emerald-700">{viewingStudent.attendanceRate}% Present</span>
+                  <span className="font-bold text-emerald-700 dark:text-emerald-400">{viewingStudent.attendanceRate}% Present</span>
                 </div>
                 <div>
                   <span className="text-slate-400 font-semibold uppercase text-[10px] block">Student Email</span>
-                  <span className="text-slate-700">{viewingStudent.email}</span>
+                  <span className="text-slate-700 dark:text-slate-300">{viewingStudent.email}</span>
                 </div>
                 <div>
                   <span className="text-slate-400 font-semibold uppercase text-[10px] block">Gender & Blood</span>
-                  <span className="text-slate-700">{viewingStudent.gender} • {viewingStudent.bloodGroup || 'O+'}</span>
+                  <span className="text-slate-700 dark:text-slate-300">{viewingStudent.gender} • {viewingStudent.bloodGroup || 'O+'}</span>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-100">
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
                 <span className="text-slate-400 font-semibold uppercase text-[10px] block mb-1">
                   Guardian Information
                 </span>
-                <p className="font-bold text-slate-800">
+                <p className="font-bold text-slate-800 dark:text-slate-200">
                   {viewingStudent.guardianName} ({viewingStudent.guardianRelation})
                 </p>
-                <p className="text-slate-500">{viewingStudent.guardianPhone} • {viewingStudent.guardianEmail || 'N/A'}</p>
+                <p className="text-slate-500 dark:text-slate-400">{viewingStudent.guardianPhone} • {viewingStudent.guardianEmail || 'N/A'}</p>
               </div>
 
-              <div className="pt-3 border-t border-slate-100">
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800">
                 <span className="text-slate-400 font-semibold uppercase text-[10px] block mb-1">
                   Tuition Financial Status
                 </span>
                 <div className="flex justify-between font-semibold">
-                  <span>Pending Dues:</span>
-                  <span className="text-rose-600 font-mono">{formatCurrency(viewingStudent.pendingFees)}</span>
+                  <span className="text-slate-600 dark:text-slate-400">Pending Dues:</span>
+                  <span className="text-rose-600 dark:text-rose-400 font-mono">{formatCurrency(viewingStudent.pendingFees)}</span>
                 </div>
-                <div className="flex justify-between text-slate-500">
+                <div className="flex justify-between text-slate-500 dark:text-slate-400">
                   <span>Total Paid:</span>
-                  <span className="text-emerald-600 font-mono">{formatCurrency(viewingStudent.paidFees)}</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-mono">{formatCurrency(viewingStudent.paidFees)}</span>
                 </div>
               </div>
             </div>
