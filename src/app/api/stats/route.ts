@@ -12,6 +12,9 @@ export async function GET() {
       allFees,
       recentActivities,
       classesWithStudents,
+      recentAdmissions,
+      upcomingExams,
+      notices,
     ] = await Promise.all([
       prisma.student.count(),
       prisma.teacher.count(),
@@ -32,6 +35,41 @@ export async function GET() {
           },
         },
       }),
+      prisma.student.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 5,
+        include: {
+          user: {
+            select: {
+              name: true,
+              email: true,
+              avatar: true,
+            },
+          },
+          class: {
+            select: {
+              name: true,
+              section: true,
+            },
+          },
+        },
+      }),
+      prisma.exam.findMany({
+        orderBy: { startDate: 'asc' },
+        take: 3,
+        include: {
+          class: {
+            select: {
+              name: true,
+              section: true,
+            },
+          },
+        },
+      }),
+      prisma.notice.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 3,
+      }),
     ]);
 
     // Attendance calculation
@@ -49,6 +87,25 @@ export async function GET() {
       students: c._count.students,
     }));
 
+    const upcomingEvents = [
+      ...upcomingExams.map((exam) => ({
+        id: `exam-${exam.id}`,
+        title: exam.title,
+        subtitle: `${exam.class?.name || 'Class'} (${exam.class?.section || 'A'})`,
+        date: exam.startDate,
+        category: 'EXAM',
+        type: exam.examType,
+      })),
+      ...notices.map((n) => ({
+        id: `notice-${n.id}`,
+        title: n.title,
+        subtitle: n.category,
+        date: n.createdAt,
+        category: n.category,
+        type: 'EVENT',
+      })),
+    ].slice(0, 5);
+
     return NextResponse.json({
       success: true,
       stats: {
@@ -64,6 +121,8 @@ export async function GET() {
       },
       classDistribution,
       recentActivities,
+      recentAdmissions,
+      upcomingEvents,
     });
   } catch (error) {
     console.error('Error fetching dashboard stats:', error);
