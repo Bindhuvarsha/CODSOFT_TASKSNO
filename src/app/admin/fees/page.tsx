@@ -124,45 +124,45 @@ export default function FeesAdminPage() {
       <div className="p-6 space-y-6">
         {/* KPI Strip */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-xl border border-slate-200/90 shadow-xs">
-            <span className="text-[11px] font-semibold text-slate-500 uppercase">Total Billed</span>
-            <p className="text-2xl font-bold text-slate-900 mt-1">
+          <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs">
+            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Total Billed</span>
+            <p className="text-2xl font-bold text-slate-900 dark:text-white mt-1">
               {formatCurrency(stats?.totalBilled || 0)}
             </p>
-            <span className="text-[10px] text-slate-500">{stats?.counts?.total || 0} Total Invoices</span>
+            <span className="text-[10px] text-slate-500 dark:text-slate-400">{stats?.counts?.total || 0} Total Invoices</span>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-slate-200/90 shadow-xs">
-            <span className="text-[11px] font-semibold text-slate-500 uppercase">Total Collected</span>
-            <p className="text-2xl font-bold text-emerald-600 mt-1">
+          <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs">
+            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Total Collected</span>
+            <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mt-1">
               {formatCurrency(stats?.totalCollected || 0)}
             </p>
-            <span className="text-[10px] text-emerald-600 font-medium">
+            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
               {stats?.collectionRate || 0}% Collection Efficiency
             </span>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-slate-200/90 shadow-xs">
-            <span className="text-[11px] font-semibold text-slate-500 uppercase">Outstanding Dues</span>
-            <p className="text-2xl font-bold text-amber-600 mt-1">
+          <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs">
+            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Outstanding Dues</span>
+            <p className="text-2xl font-bold text-amber-600 dark:text-amber-400 mt-1">
               {formatCurrency(stats?.pendingDues || 0)}
             </p>
-            <span className="text-[10px] text-amber-600 font-medium">
+            <span className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">
               {stats?.counts?.pending || 0} Pending Settlements
             </span>
           </div>
 
-          <div className="bg-white p-4 rounded-xl border border-slate-200/90 shadow-xs">
-            <span className="text-[11px] font-semibold text-slate-500 uppercase">Overdue Balance</span>
-            <p className="text-2xl font-bold text-rose-600 mt-1">
+          <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs">
+            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Overdue Balance</span>
+            <p className="text-2xl font-bold text-rose-600 dark:text-rose-400 mt-1">
               {stats?.counts?.overdue || 0}
             </p>
-            <span className="text-[10px] text-rose-600 font-medium">Overdue Invoices</span>
+            <span className="text-[10px] text-rose-600 dark:text-rose-400 font-medium">Overdue Invoices</span>
           </div>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="bg-white rounded-xl border border-slate-200/90 p-4 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 p-4 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="relative w-full sm:w-72">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -170,7 +170,7 @@ export default function FeesAdminPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search invoice number, student..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white"
+              className="w-full pl-9 pr-3 py-1.5 text-xs bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white dark:focus:bg-slate-900"
             />
           </div>
 
@@ -178,7 +178,7 @@ export default function FeesAdminPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium"
+              className="px-3 py-1.5 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium"
             >
               <option value="">All Payment Statuses</option>
               <option value="PAID">PAID</option>
@@ -190,10 +190,10 @@ export default function FeesAdminPage() {
         </div>
 
         {/* Invoices Table */}
-        <div className="bg-white rounded-xl border border-slate-200/90 shadow-xs overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200/90 dark:border-slate-800 shadow-xs overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50/80 text-slate-600 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200">
+              <thead className="bg-slate-50/80 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 font-bold uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-slate-800">
                 <tr>
                   <th className="py-3 px-4">Invoice #</th>
                   <th className="py-3 px-4">Student & Cohort</th>
@@ -205,16 +205,16 @@ export default function FeesAdminPage() {
                   <th className="py-3 px-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {loading ? (
                   <tr>
-                    <td colSpan={8} className="py-8 text-center text-slate-400">
+                    <td colSpan={8} className="py-8 text-center text-slate-400 dark:text-slate-500">
                       Loading fee records...
                     </td>
                   </tr>
                 ) : invoices.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="py-8 text-center text-slate-500">
+                    <td colSpan={8} className="py-8 text-center text-slate-500 dark:text-slate-400">
                       No invoices found.
                     </td>
                   </tr>
@@ -224,27 +224,27 @@ export default function FeesAdminPage() {
                     const remaining = inv.amount - inv.paidAmount;
 
                     return (
-                      <tr key={inv.id} className="hover:bg-slate-50/50 transition-colors">
-                        <td className="py-3 px-4 font-mono font-bold text-slate-900">{inv.invoiceNumber}</td>
+                      <tr key={inv.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                        <td className="py-3 px-4 font-mono font-bold text-slate-900 dark:text-white">{inv.invoiceNumber}</td>
                         <td className="py-3 px-4">
-                          <p className="font-semibold text-slate-900">{inv.student.user.name}</p>
-                          <p className="text-[11px] text-slate-400">
+                          <p className="font-semibold text-slate-900 dark:text-white">{inv.student.user.name}</p>
+                          <p className="text-[11px] text-slate-400 dark:text-slate-500">
                             {inv.student.class?.name} - {inv.student.class?.section}
                           </p>
                         </td>
                         <td className="py-3 px-3">
-                          <span className="font-medium text-slate-800 block">{inv.title}</span>
-                          <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                          <span className="font-medium text-slate-800 dark:text-slate-200 block">{inv.title}</span>
+                          <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
                             {inv.feeType}
                           </span>
                         </td>
-                        <td className="py-3 px-3 text-right font-mono font-bold text-slate-900">
+                        <td className="py-3 px-3 text-right font-mono font-bold text-slate-900 dark:text-white">
                           {formatCurrency(inv.amount)}
                         </td>
-                        <td className="py-3 px-3 text-right font-mono font-bold text-emerald-600">
+                        <td className="py-3 px-3 text-right font-mono font-bold text-emerald-600 dark:text-emerald-400">
                           {formatCurrency(inv.paidAmount)}
                         </td>
-                        <td className="py-3 px-3 text-slate-600">{formatDate(inv.dueDate)}</td>
+                        <td className="py-3 px-3 text-slate-600 dark:text-slate-300">{formatDate(inv.dueDate)}</td>
                         <td className="py-3 px-3 text-center">
                           <span
                             className={`inline-block px-2.5 py-0.5 rounded-full font-bold text-[10px] border ${statusBadge.color}`}
@@ -264,7 +264,7 @@ export default function FeesAdminPage() {
                               Collect Fee
                             </button>
                           ) : (
-                            <span className="text-[11px] text-slate-400 font-medium">Receipt Issued</span>
+                            <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">Receipt Issued</span>
                           )}
                         </td>
                       </tr>
@@ -279,13 +279,13 @@ export default function FeesAdminPage() {
 
       {/* Create Invoice Modal */}
       {isCreateModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-md overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-              <h3 className="text-base font-bold text-slate-900">Generate Student Fee Invoice</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-md overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-850">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">Generate Student Fee Invoice</h3>
               <button
                 onClick={() => setIsCreateModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 font-bold"
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-bold"
               >
                 ✕
               </button>
@@ -293,11 +293,11 @@ export default function FeesAdminPage() {
 
             <form onSubmit={handleCreateInvoice} className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Target Student *</label>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Target Student *</label>
                 <select
                   value={targetStudentId}
                   onChange={(e) => setTargetStudentId(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white font-medium"
+                  className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none bg-slate-50 dark:bg-slate-800 font-medium"
                 >
                   {students.map((s) => (
                     <option key={s.id} value={s.id}>
@@ -308,24 +308,24 @@ export default function FeesAdminPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Fee Item Title *</label>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Fee Item Title *</label>
                 <input
                   type="text"
                   required
                   value={invoiceTitle}
                   onChange={(e) => setInvoiceTitle(e.target.value)}
                   placeholder="e.g. Science Lab & Computing Term Fee"
-                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none"
+                  className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">Fee Category</label>
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Fee Category</label>
                   <select
                     value={feeType}
                     onChange={(e) => setFeeType(e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white"
+                    className="w-full px-3 py-2 text-sm border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none bg-slate-50 dark:bg-slate-800"
                   >
                     <option value="TUITION">TUITION</option>
                     <option value="LAB">LAB</option>
@@ -337,34 +337,34 @@ export default function FeesAdminPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">Amount ($) *</label>
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Amount ($) *</label>
                   <input
                     type="number"
                     step="0.01"
                     required
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold"
+                    className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none font-bold"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Due Date *</label>
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Due Date *</label>
                 <input
                   type="date"
                   required
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
-                  className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none"
+                  className="w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-brand-500 focus:outline-none"
                 />
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsCreateModalOpen(false)}
-                  className="px-4 py-2 text-xs font-medium text-slate-600 hover:text-slate-800"
+                  className="px-4 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
                 >
                   Cancel
                 </button>
