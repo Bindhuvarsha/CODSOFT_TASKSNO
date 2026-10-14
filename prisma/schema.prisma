@@ -1,0 +1,196 @@
+// Prisma schema for EduManage - Student Management System
+// Compatible with both SQLite (zero-config local dev) and PostgreSQL (production)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  password     String
+  role         String    @default("STUDENT") // ADMIN, TEACHER, STUDENT
+  avatar       String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  studentProfile Student?
+  teacherProfile Teacher?
+  sentNotices    Notice[]
+}
+
+model Teacher {
+  id           String    @id @default(cuid())
+  userId       String    @unique
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  employeeId   String    @unique
+  phone        String?
+  department   String
+  designation  String
+  qualification String
+  joiningDate  DateTime  @default(now())
+
+  classes      Class[]
+  subjects     Subject[]
+  attendances  Attendance[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Class {
+  id             String    @id @default(cuid())
+  name           String    // e.g. "Grade 10"
+  section        String    // e.g. "A"
+  room           String?
+  academicYear   String    // e.g. "2026-2027"
+  classTeacherId String?
+  classTeacher   Teacher?  @relation(fields: [classTeacherId], references: [id])
+
+  students       Student[]
+  subjects       Subject[]
+  attendances    Attendance[]
+  exams          Exam[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([name, section, academicYear])
+}
+
+model Subject {
+  id          String       @id @default(cuid())
+  name        String       // e.g. "Mathematics"
+  code        String       // e.g. "MATH101"
+  classId     String
+  class       Class        @relation(fields: [classId], references: [id], onDelete: Cascade)
+  teacherId   String?
+  teacher     Teacher?     @relation(fields: [teacherId], references: [id])
+
+  examResults ExamResult[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([code, classId])
+}
+
+model Student {
+  id               String       @id @default(cuid())
+  userId           String       @unique
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  admissionNo      String       @unique
+  rollNo           String
+  gender           String       // Male, Female, Other
+  dateOfBirth      DateTime
+  bloodGroup       String?
+  phone            String?
+  address          String?
+  guardianName     String
+  guardianPhone    String
+  guardianEmail    String?
+  guardianRelation String       // Father, Mother, Guardian
+  status           String       @default("ACTIVE") // ACTIVE, INACTIVE, SUSPENDED, GRADUATED
+  enrollmentDate   DateTime     @default(now())
+  classId          String
+  class            Class        @relation(fields: [classId], references: [id])
+
+  attendances      Attendance[]
+  examResults      ExamResult[]
+  fees             FeeInvoice[]
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Attendance {
+  id          String   @id @default(cuid())
+  date        DateTime
+  status      String   @default("PRESENT") // PRESENT, ABSENT, LATE, EXCUSED
+  remarks     String?
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  classId     String
+  class       Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  markedById  String?
+  markedBy    Teacher? @relation(fields: [markedById], references: [id])
+  createdAt   DateTime @default(now())
+
+  @@unique([studentId, date])
+}
+
+model Exam {
+  id           String       @id @default(cuid())
+  title        String       // e.g. "Midterm Examination 2026"
+  examType     String       @default("MIDTERM") // MIDTERM, FINAL, UNIT_TEST, QUIZ
+  startDate    DateTime
+  endDate      DateTime
+  academicYear String
+  classId      String
+  class        Class        @relation(fields: [classId], references: [id], onDelete: Cascade)
+
+  results      ExamResult[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model ExamResult {
+  id            String   @id @default(cuid())
+  examId        String
+  exam          Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  studentId     String
+  student       Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subjectId     String
+  subject       Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  marksObtained Float
+  maxMarks      Float    @default(100)
+  grade         String   // A+, A, B, C, D, F
+  remarks       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([examId, studentId, subjectId])
+}
+
+model FeeInvoice {
+  id            String    @id @default(cuid())
+  invoiceNumber String    @unique // e.g. "INV-2026-001"
+  studentId     String
+  student       Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  title         String    // e.g. "Tuition & Lab Fee Q1"
+  feeType       String    @default("TUITION") // TUITION, EXAM, LAB, LIBRARY, TRANSPORT, SPORTS
+  amount        Float
+  paidAmount    Float     @default(0)
+  dueDate       DateTime
+  paidDate      DateTime?
+  status        String    @default("PENDING") // PAID, PENDING, PARTIAL, OVERDUE
+  paymentMethod String?   // CASH, CARD, BANK_TRANSFER, UPI, ONLINE
+  transactionId String?
+  remarks       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Notice {
+  id         String   @id @default(cuid())
+  title      String
+  content    String
+  category   String   @default("GENERAL") // ACADEMIC, EXAM, HOLIDAY, SPORTS, GENERAL, URGENT
+  targetRole String   @default("ALL")     // ALL, TEACHER, STUDENT, ADMIN
+  authorId   String
+  author     User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  pinned     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  action    String
+  details   String
+  userName  String?
+  userRole  String?
+  createdAt DateTime @default(now())
+}
